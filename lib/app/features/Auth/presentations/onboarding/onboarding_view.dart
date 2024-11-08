@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:quirckly/app/core/constant/images.dart';
+import 'package:quirckly/app/core/router/app_routes.dart';
 import 'package:quirckly/app/core/themes/app_colors.dart';
 import 'package:quirckly/app/core/themes/app_textstyles.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
@@ -64,7 +66,9 @@ class OnboardingView extends StatelessWidget {
                       width: double.infinity,
                       height: 55,
                       child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            context.go(AppRoutes.signin);
+                          },
                           child: Text(
                             "Sign In",
                             style: TextStyle(color: textColor),
@@ -80,7 +84,9 @@ class OnboardingView extends StatelessWidget {
                           style: ButtonStyle(
                               backgroundColor: WidgetStatePropertyAll(
                                   Color.fromRGBO(34, 38, 19, 1))),
-                          onPressed: () {},
+                          onPressed: () {
+                            context.go(AppRoutes.signup);
+                          },
                           child: Text(
                             "Sign Up",
                             style: TextStyle(color: Colors.white),
