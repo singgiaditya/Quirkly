@@ -27,6 +27,7 @@ dependencies:
   dartz: ^0.10.1
   google_fonts: ^6.2.1
   simple_gradient_text: ^1.3.0
+  flutter_svg: ^2.0.14
 
 dev_dependencies:
   flutter_test:
@@ -45,6 +46,7 @@ flutter:
   assets:
   # icons
     - assets/icons/menu_icon.svg
+    - assets/icons/next_icon.svg
 
   # images 
     - assets/images/onboarding_bg.png
