@@ -95,6 +95,7 @@ class HomeView extends StatelessWidget {
                     child: ListView.separated(
                       itemCount: 3,
                       shrinkWrap: true,
+                      physics: PageScrollPhysics(),
                       padding: EdgeInsets.only(left: 24, right: 24),
                       scrollDirection: Axis.horizontal,
                       separatorBuilder: (context, index) => SizedBox(
@@ -185,52 +186,57 @@ class ProjectCard extends StatelessWidget {
                 SizedBox(
                   height: 28,
                 ),
-                Row(
-                  children: [
-                    Container(
-                      width: 174,
-                      height: 16,
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [Color(0xffe5ff7f), Color(0xffd9d9d9)],
-                            stops: [0.15, 0.85],
-                            begin: Alignment.centerRight,
-                            end: Alignment.centerLeft,
-                          ),
-                          borderRadius: BorderRadius.circular(24)),
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            width: 156 * 0.75,
-                          ),
-                          Container(
-                            width: 14,
-                            height: 14,
-                            decoration: BoxDecoration(
-                                color: Color.fromRGBO(255, 218, 25, 1),
-                                shape: BoxShape.circle,
-                                boxShadow: [
-                                  BoxShadow(
-                                    blurStyle: BlurStyle.normal,
-                                    color: Colors.grey.withOpacity(0.5),
-                                    spreadRadius: 1,
-                                    blurRadius: 1,
-                                    offset: Offset(
-                                        -2, 0), // changes position of shadow
-                                  ),
-                                ]),
-                          ),
-                        ],
+                SizedBox(
+                  width: MediaQuery.sizeOf(context).width / 1.67,
+                  child: Row(
+                    children: [
+                      Container(
+                        width: MediaQuery.sizeOf(context).width / 2.2,
+                        height: 16,
+                        decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [Color(0xffe5ff7f), Color(0xffd9d9d9)],
+                              stops: [0.15, 0.85],
+                              begin: Alignment.centerRight,
+                              end: Alignment.centerLeft,
+                            ),
+                            borderRadius: BorderRadius.circular(24)),
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              width: (MediaQuery.sizeOf(context).width / 2.2 -
+                                      15) *
+                                  0.75,
+                            ),
+                            Container(
+                              width: 14,
+                              height: 14,
+                              decoration: BoxDecoration(
+                                  color: Color.fromRGBO(255, 218, 25, 1),
+                                  shape: BoxShape.circle,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      blurStyle: BlurStyle.normal,
+                                      color: Colors.grey.withOpacity(0.5),
+                                      spreadRadius: 1,
+                                      blurRadius: 1,
+                                      offset: Offset(
+                                          -2, 0), // changes position of shadow
+                                    ),
+                                  ]),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      width: 13,
-                    ),
-                    Text(
-                      "75%",
-                      style: bodyBaseTextStyle.copyWith(color: greenColor),
-                    ),
-                  ],
+                      SizedBox(
+                        width: 13,
+                      ),
+                      Text(
+                        "75%",
+                        style: bodyBaseTextStyle.copyWith(color: greenColor),
+                      ),
+                    ],
+                  ),
                 ),
                 SizedBox(
                   height: 28,
@@ -265,8 +271,8 @@ class ProjectCard extends StatelessWidget {
             Spacer(),
             Expanded(
               child: Container(
+                constraints: BoxConstraints(maxWidth: 20, maxHeight: 200),
                 padding: EdgeInsets.symmetric(vertical: 3),
-                width: 40,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(20)),
@@ -279,26 +285,32 @@ class ProjectCard extends StatelessWidget {
                         itemCount: 3,
                         shrinkWrap: true,
                         physics: NeverScrollableScrollPhysics(),
+                        padding: EdgeInsets.symmetric(horizontal: 2),
                         itemBuilder: (context, index) {
                           if (index == 0) {
                             return CircleAvatar(
                               radius: 20,
                               backgroundColor: Colors.white,
                               child: CircleAvatar(
-                                radius: 18,
+                                radius: 14,
                                 backgroundImage: NetworkImage(
                                     "https://xsgames.co/randomusers/avatar.php?g=male"),
                               ),
                             );
                           }
                           return Transform(
-                            transform:
-                                Matrix4.translationValues(0, -10.0 * index, 0),
+                            transform: Matrix4.translationValues(
+                                0,
+                                (-1.0 *
+                                        (MediaQuery.sizeOf(context).width /
+                                            25)) *
+                                    index,
+                                0),
                             child: CircleAvatar(
                               radius: 20,
                               backgroundColor: Colors.white,
                               child: CircleAvatar(
-                                radius: 18,
+                                radius: 15,
                                 backgroundImage: NetworkImage(
                                     "https://xsgames.co/randomusers/avatar.php?g=male"),
                               ),

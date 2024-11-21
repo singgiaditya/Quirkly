@@ -1,10 +1,10 @@
 import 'package:quirckly/app/core/router/app_routes.dart';
-import 'package:quirckly/app/features/Auth/presentations/onboarding/onboarding_view.dart';
-import 'package:quirckly/app/features/Auth/presentations/signin/signin_view.dart';
+import 'package:quirckly/app/features/Auth/presentations/pages/onboarding_view.dart';
+import 'package:quirckly/app/features/Auth/presentations/pages/signin_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:quirckly/app/features/Auth/presentations/signup/signup_view.dart';
-import 'package:quirckly/app/features/Home/presentations/home_view.dart';
+import 'package:quirckly/app/features/Auth/presentations/pages/signup_view.dart';
+import 'package:quirckly/app/features/Home/presentations/pages/home_view.dart';
 import 'package:quirckly/app/features/NavigationPage/presentations/navigation_page.dart';
 
 class AppRouter {
