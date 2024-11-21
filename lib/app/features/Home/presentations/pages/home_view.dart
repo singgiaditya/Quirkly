@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:quirckly/app/core/constant/icons.dart';
@@ -95,7 +96,8 @@ class HomeView extends StatelessWidget {
                     child: ListView.separated(
                       itemCount: 3,
                       shrinkWrap: true,
-                      physics: PageScrollPhysics(),
+                      physics: RangeMaintainingScrollPhysics(),
+                      cacheExtent: 215,
                       padding: EdgeInsets.only(left: 24, right: 24),
                       scrollDirection: Axis.horizontal,
                       separatorBuilder: (context, index) => SizedBox(
@@ -289,12 +291,13 @@ class ProjectCard extends StatelessWidget {
                         itemBuilder: (context, index) {
                           if (index == 0) {
                             return CircleAvatar(
-                              radius: 20,
+                              radius: (MediaQuery.sizeOf(context).width / 25),
                               backgroundColor: Colors.white,
                               child: CircleAvatar(
-                                radius: 14,
+                                radius:
+                                    (MediaQuery.sizeOf(context).width / 25 - 2),
                                 backgroundImage: NetworkImage(
-                                    "https://xsgames.co/randomusers/avatar.php?g=male"),
+                                    "https://api.dicebear.com/9.x/big-smile/png?seed=Ramadhan&backgroundColor=b6e3f4,c0aede,d1d4f9"),
                               ),
                             );
                           }
@@ -303,16 +306,17 @@ class ProjectCard extends StatelessWidget {
                                 0,
                                 (-1.0 *
                                         (MediaQuery.sizeOf(context).width /
-                                            25)) *
+                                            35)) *
                                     index,
                                 0),
                             child: CircleAvatar(
-                              radius: 20,
+                              radius: (MediaQuery.sizeOf(context).width / 25),
                               backgroundColor: Colors.white,
                               child: CircleAvatar(
-                                radius: 15,
+                                radius:
+                                    (MediaQuery.sizeOf(context).width / 25 - 2),
                                 backgroundImage: NetworkImage(
-                                    "https://xsgames.co/randomusers/avatar.php?g=male"),
+                                    "https://api.dicebear.com/9.x/big-smile/png?seed=$index&backgroundColor=b6e3f4,c0aede,d1d4f9"),
                               ),
                             ),
                           );
