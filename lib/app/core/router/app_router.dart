@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:quirckly/app/features/Auth/presentations/pages/signup_view.dart';
 import 'package:quirckly/app/features/Home/presentations/pages/home_view.dart';
 import 'package:quirckly/app/features/NavigationPage/presentations/navigation_page.dart';
+import 'package:quirckly/app/features/Profile/presentations/pages/profile_view.dart';
 import 'package:quirckly/app/features/Task/presentations/pages/my_task_view.dart';
 
 class AppRouter {
@@ -71,8 +72,10 @@ class AppRouter {
               GoRoute(
                 parentNavigatorKey: _shellNavigatorProfile,
                 path: AppRoutes.profile,
-                pageBuilder: (context, state) =>
-                    NoTransitionPage(child: Text("Profile")),
+                pageBuilder: (context, state) => NoTransitionPage(
+                    child: ProfileView(
+                  parentKey: _scaffoldKey,
+                )),
               ),
             ]),
           ])
