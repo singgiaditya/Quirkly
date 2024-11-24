@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 TextStyle regularTextStyle =
-    GoogleFonts.inter(fontSize: 10, fontWeight: FontWeight.w400);
+    GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w400);
 
 TextStyle titleSTextStyle =
     GoogleFonts.inter(fontSize: 20, fontWeight: FontWeight.w700);

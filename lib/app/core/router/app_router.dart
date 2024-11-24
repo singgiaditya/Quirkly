@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:quirckly/app/features/Auth/presentations/pages/signup_view.dart';
 import 'package:quirckly/app/features/Home/presentations/pages/home_view.dart';
 import 'package:quirckly/app/features/NavigationPage/presentations/navigation_page.dart';
+import 'package:quirckly/app/features/Task/presentations/pages/my_task_view.dart';
 
 class AppRouter {
   static final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
@@ -63,7 +64,7 @@ class AppRouter {
                 parentNavigatorKey: _shellNavigatorTask,
                 path: AppRoutes.task,
                 pageBuilder: (context, state) =>
-                    NoTransitionPage(child: Text("My Task")),
+                    NoTransitionPage(child: MyTaskView()),
               ),
             ]),
             StatefulShellBranch(navigatorKey: _shellNavigatorProfile, routes: [
