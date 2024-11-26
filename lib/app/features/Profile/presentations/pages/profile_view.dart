@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:quirckly/app/core/router/app_routes.dart';
 import 'package:quirckly/app/core/themes/app_colors.dart';
 import 'package:quirckly/app/core/themes/app_textstyles.dart';
 import 'package:quirckly/app/features/Profile/presentations/widgets/custom_card.dart';
@@ -23,17 +25,14 @@ class _ProfileViewState extends State<ProfileView> {
             style: titleMTextStyle.copyWith(color: Colors.black),
           ),
           actions: [
-            CircleAvatar(
-              backgroundImage: NetworkImage(
-                  "https://api.dicebear.com/9.x/big-smile/png?seed=Ramadhan&backgroundColor=b6e3f4,c0aede,d1d4f9"),
-            ),
-            SizedBox(
-              width: 4,
-            ),
             GestureDetector(
-                onTap: () =>
-                    showCustomBottomSheet(widget.parentKey.currentContext!),
-                child: Icon(Icons.more_vert, color: Colors.black)),
+              onTap: () =>
+                  showCustomBottomSheet(widget.parentKey.currentContext!),
+              child: CircleAvatar(
+                backgroundImage: NetworkImage(
+                    "https://api.dicebear.com/9.x/big-smile/png?seed=Ramadhan&backgroundColor=b6e3f4,c0aede,d1d4f9"),
+              ),
+            ),
             SizedBox(
               width: 10,
             ),
@@ -54,9 +53,14 @@ class _ProfileViewState extends State<ProfileView> {
                     "Your Company",
                     style: titleSTextStyle.copyWith(color: greenColor),
                   ),
-                  Text(
-                    "See All",
-                    style: bodyLTextStyle.copyWith(color: greenColor),
+                  GestureDetector(
+                    onTap: () {
+                      context.pushNamed(AppRoutes.listCompanyNamed);
+                    },
+                    child: Text(
+                      "See All",
+                      style: bodyLTextStyle.copyWith(color: greenColor),
+                    ),
                   )
                 ],
               ),

@@ -8,52 +8,68 @@ void showCustomBottomSheet(BuildContext context) {
   showModalBottomSheet(
     context: context,
     builder: (context) {
-      return Wrap(
-        children: [
-          SizedBox(
-            height: 24,
+      return Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
           ),
-          ListTile(
-            leading: Icon(Icons.apartment_outlined),
-            title: Text(
-              'Create Company',
-              style: bodyLTextStyle,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SizedBox(
+              height: 24,
             ),
-          ),
-          Divider(
-            color: Colors.white60,
-          ),
-          ListTile(
-            leading: Icon(Icons.key_outlined),
-            title: Text(
-              'Change Password',
-              style: bodyLTextStyle,
+            ListTile(
+              leading: Icon(
+                Icons.apartment_outlined,
+                color: Colors.black87,
+              ),
+              title: Text(
+                'Create Company',
+                style: bodyLTextStyle.copyWith(color: Colors.black87),
+              ),
             ),
-          ),
-          Divider(
-            color: Colors.white60,
-          ),
-          ListTile(
-            onTap: () {
-              context.pop();
-              context.pushReplacement(AppRoutes.onBoarding);
-            },
-            leading: Icon(
-              Icons.logout,
+            Divider(
+              color: Colors.black87,
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.key_outlined,
+                color: Colors.black87,
+              ),
+              title: Text(
+                'Change Password',
+                style: bodyLTextStyle.copyWith(color: Colors.black87),
+              ),
+            ),
+            Divider(
+              color: Colors.black87,
+            ),
+            ListTile(
+              onTap: () {
+                context.pop();
+                context.pushReplacement(AppRoutes.onBoarding);
+              },
+              leading: Icon(
+                Icons.logout,
+                color: redColor,
+              ),
+              title: Text(
+                'Logout',
+                style: bodyLTextStyle.copyWith(color: redColor),
+              ),
+            ),
+            Divider(
               color: redColor,
             ),
-            title: Text(
-              'Logout',
-              style: bodyLTextStyle.copyWith(color: redColor),
-            ),
-          ),
-          Divider(
-            color: redColor,
-          ),
-          SizedBox(
-            height: 40,
-          )
-        ],
+            SizedBox(
+              height: 40,
+            )
+          ],
+        ),
       );
     },
   );
