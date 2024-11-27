@@ -71,7 +71,10 @@ class _ProfileViewState extends State<ProfileView> {
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
                 itemCount: 2,
-                itemBuilder: (context, index) => CustomCard(),
+                itemBuilder: (context, index) => GestureDetector(
+                    onTap: () =>
+                        context.pushNamed(AppRoutes.detailCompanyNamed),
+                    child: CustomCard()),
                 separatorBuilder: (context, index) => SizedBox(
                   height: 14,
                 ),
@@ -86,9 +89,14 @@ class _ProfileViewState extends State<ProfileView> {
                     "Your Team",
                     style: titleSTextStyle.copyWith(color: yellowColor),
                   ),
-                  Text(
-                    "See All",
-                    style: bodyLTextStyle.copyWith(color: yellowColor),
+                  GestureDetector(
+                    onTap: () {
+                      context.pushNamed(AppRoutes.listTeamNamed);
+                    },
+                    child: Text(
+                      "See All",
+                      style: bodyLTextStyle.copyWith(color: yellowColor),
+                    ),
                   )
                 ],
               ),
@@ -99,7 +107,9 @@ class _ProfileViewState extends State<ProfileView> {
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
                 itemCount: 2,
-                itemBuilder: (context, index) => CustomCard(company: "Amazon"),
+                itemBuilder: (context, index) => GestureDetector(
+                    onTap: () => context.pushNamed(AppRoutes.detailTeamNamed),
+                    child: CustomCard(company: "Amazon")),
                 separatorBuilder: (context, index) => SizedBox(
                   height: 14,
                 ),

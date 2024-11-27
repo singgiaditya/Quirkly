@@ -52,7 +52,7 @@ class ListCompanyView extends StatelessWidget {
               physics: NeverScrollableScrollPhysics(),
               itemCount: 2,
               itemBuilder: (context, index) => GestureDetector(
-                  onTap: () => context.pushNamed(AppRoutes.detailCompanyNamed),
+                  onTap: () => context.pushNamed(AppRoutes.detailTeamNamed),
                   child: CustomCard()),
               separatorBuilder: (context, index) => SizedBox(
                 height: 20,
