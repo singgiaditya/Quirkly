@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:quirckly/app/core/themes/app_textstyles.dart';
 
-class MyTaskWidget extends StatelessWidget {
+class TaskCard extends StatelessWidget {
   final Color color;
-  const MyTaskWidget({
+  const TaskCard({
     super.key,
     required this.color,
   });

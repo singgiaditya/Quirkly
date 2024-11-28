@@ -19,4 +19,7 @@ class AppRoutes {
   static const listTeamNamed = "list-team";
   static const detailTeam = "/detail-Team";
   static const detailTeamNamed = "detail-Team";
+
+  static const project = "/project";
+  static const projectNamed = "project";
 }

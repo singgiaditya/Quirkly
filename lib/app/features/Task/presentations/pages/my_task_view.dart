@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quirckly/app/core/themes/app_colors.dart';
 import 'package:quirckly/app/core/themes/app_textstyles.dart';
-import 'package:quirckly/app/features/Task/presentations/widgets/my_task_widget.dart';
+import 'package:quirckly/app/core/widgets/task_card.dart';
 
 class MyTaskView extends StatefulWidget {
   MyTaskView({super.key});
@@ -74,7 +74,7 @@ class _MyTaskViewState extends State<MyTaskView> {
                   if (currentColor > color.length - 1) {
                     currentColor = 0;
                   }
-                  return MyTaskWidget(
+                  return TaskCard(
                     color: myColor,
                   );
                 },

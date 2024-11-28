@@ -11,6 +11,7 @@ import 'package:quirckly/app/features/Profile/presentations/pages/detail_team_vi
 import 'package:quirckly/app/features/Profile/presentations/pages/list_company_view.dart';
 import 'package:quirckly/app/features/Profile/presentations/pages/list_team_view.dart';
 import 'package:quirckly/app/features/Profile/presentations/pages/profile_view.dart';
+import 'package:quirckly/app/features/Project/Presentations/project_view.dart';
 import 'package:quirckly/app/features/Task/presentations/pages/my_task_view.dart';
 
 class AppRouter {
@@ -117,6 +118,12 @@ class AppRouter {
               ),
             ]),
           ]),
+      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
+        path: AppRoutes.project,
+        name: AppRoutes.projectNamed,
+        builder: (context, state) => const ProjectView(),
+      ),
     ],
   );
 }
