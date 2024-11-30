@@ -16,17 +16,11 @@ class AuthLocalDataSource {
 
   Future<String?> getToken() async {
     final token = prefs.getString(tokenPrefsKey);
-    if (token == null) {
-      throw Exception("No token found");
-    }
     return token;
   }
 
   Future<String?> getUser() async {
     final user = prefs.getString(userPrefsKey);
-    if (user == null) {
-      throw Exception("No user Found");
-    }
     return user;
   }
 

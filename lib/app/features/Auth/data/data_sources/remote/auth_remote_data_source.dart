@@ -53,10 +53,14 @@ class AuthRemoteDataSource {
         headers: headers,
       );
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
         RegisterResponseModel registerResponseModel =
             RegisterResponseModel.fromRawJson(response.body);
         return registerResponseModel;
+      }
+
+      if (response.statusCode == 409) {
+        throw Exception("Unique: The email has already been taken.");
       }
       throw Exception("Unexpected error: ${response.statusCode}");
     } catch (e) {

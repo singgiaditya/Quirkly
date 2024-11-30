@@ -3,6 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:quirckly/app/core/router/app_routes.dart';
 import 'package:quirckly/app/core/themes/app_colors.dart';
 import 'package:quirckly/app/core/themes/app_textstyles.dart';
+import 'package:quirckly/app/features/Auth/domain/usecase/logout_usecase.dart';
+import 'package:quirckly/app/injection_container.dart';
 
 void showCustomBottomSheet(BuildContext context) {
   showModalBottomSheet(
@@ -49,9 +51,9 @@ void showCustomBottomSheet(BuildContext context) {
               color: Colors.black87,
             ),
             ListTile(
-              onTap: () {
-                context.pop();
-                context.pushReplacement(AppRoutes.onBoarding);
+              onTap: () async {
+                await sl<LogoutUsecase>().call();
+                context.go(AppRoutes.onBoarding);
               },
               leading: Icon(
                 Icons.logout,

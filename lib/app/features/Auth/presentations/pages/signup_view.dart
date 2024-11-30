@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:quirckly/app/core/helper/snackbar_helper.dart';
 import 'package:quirckly/app/core/router/app_routes.dart';
 import 'package:quirckly/app/core/themes/app_colors.dart';
 import 'package:quirckly/app/core/themes/app_textstyles.dart';
+import 'package:quirckly/app/features/Auth/data/models/request/register_request_model.dart';
+import 'package:quirckly/app/features/Auth/presentations/bloc/register_bloc/register_bloc.dart';
 import 'package:quirckly/app/features/Auth/presentations/widgets/auth_textfield.dart';
 
 class SignupView extends StatefulWidget {
@@ -93,15 +97,73 @@ class _SigninViewState extends State<SignupView> {
                   SizedBox(
                     height: 40,
                   ),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 55,
-                    child: ElevatedButton(
-                        onPressed: () {},
-                        child: Text(
-                          "Sign Up",
-                          style: TextStyle(color: textColor),
-                        )),
+                  BlocConsumer<RegisterBloc, RegisterState>(
+                    listener: (context, state) {
+                      state.maybeWhen(
+                        orElse: () {},
+                        error: (failure) => SnackbarHelper.showSnackBar(
+                            context, failure.message),
+                        done: (response) =>
+                            context.goNamed(AppRoutes.homeNamed),
+                      );
+                    },
+                    builder: (context, state) {
+                      return state.maybeWhen(
+                        orElse: () {
+                          return SizedBox(
+                            width: double.infinity,
+                            height: 55,
+                            child: ElevatedButton(
+                                onPressed: () {
+                                  if (emailController.text.isEmpty ||
+                                      passwordController.text.isEmpty ||
+                                      fullNameController.text.isEmpty ||
+                                      confirmPasswordController.text.isEmpty ||
+                                      phoneNumberController.text.isEmpty) {
+                                    SnackbarHelper.showSnackBar(
+                                        context, "Please Fill All Fields");
+                                    return;
+                                  }
+                                  if (passwordController.text !=
+                                      confirmPasswordController.text) {
+                                    SnackbarHelper.showSnackBar(context,
+                                        "Password not same, please check again");
+                                    return;
+                                  }
+
+                                  final RegisterRequestModel request =
+                                      RegisterRequestModel(
+                                          email: emailController.text,
+                                          name: fullNameController.text,
+                                          password: passwordController.text,
+                                          phoneNumber:
+                                              phoneNumberController.text);
+                                  context
+                                      .read<RegisterBloc>()
+                                      .add(RegisterEvent.register(request));
+                                },
+                                child: Text(
+                                  "Sign Up",
+                                  style: TextStyle(color: textColor),
+                                )),
+                          );
+                        },
+                        loading: () {
+                          return SizedBox(
+                            width: double.infinity,
+                            height: 55,
+                            child: ElevatedButton(
+                                onPressed: null,
+                                child: SizedBox(
+                                    height: 20,
+                                    width: 20,
+                                    child: CircularProgressIndicator(
+                                      color: Colors.white,
+                                    ))),
+                          );
+                        },
+                      );
+                    },
                   ),
                   SizedBox(
                     height: 20,

@@ -12,6 +12,7 @@ import 'package:quirckly/app/features/Profile/presentations/pages/list_company_v
 import 'package:quirckly/app/features/Profile/presentations/pages/list_team_view.dart';
 import 'package:quirckly/app/features/Profile/presentations/pages/profile_view.dart';
 import 'package:quirckly/app/features/Project/Presentations/project_view.dart';
+import 'package:quirckly/app/features/Splash/presentations/splash_screen.dart';
 import 'package:quirckly/app/features/Task/presentations/pages/my_task_view.dart';
 
 class AppRouter {
@@ -37,8 +38,14 @@ class AppRouter {
 
   static GoRouter router = GoRouter(
     navigatorKey: _rootNavigatorKey,
-    initialLocation: AppRoutes.onBoarding,
+    initialLocation: AppRoutes.splash,
     routes: [
+      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
+        path: AppRoutes.splash,
+        name: AppRoutes.splashNamed,
+        builder: (context, state) => const SplashScreen(),
+      ),
       //Authentication
       GoRoute(
         parentNavigatorKey: _rootNavigatorKey,
@@ -64,6 +71,7 @@ class AppRouter {
               GoRoute(
                 parentNavigatorKey: _shellNavigatorHome,
                 path: AppRoutes.home,
+                name: AppRoutes.homeNamed,
                 pageBuilder: (context, state) =>
                     NoTransitionPage(child: HomeView()),
               ),
