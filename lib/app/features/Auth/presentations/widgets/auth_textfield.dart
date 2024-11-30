@@ -5,17 +5,20 @@ class AuthTextField extends StatelessWidget {
   final String hintText;
   final IconData prefixIcon;
   final Widget? suffix;
+  final TextEditingController controller;
 
   const AuthTextField({
     super.key,
     required this.hintText,
     required this.prefixIcon,
+    required this.controller,
     this.suffix,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: controller,
       style: bodyBaseTextStyle.copyWith(color: Colors.white),
       decoration: InputDecoration(
           hintText: hintText,

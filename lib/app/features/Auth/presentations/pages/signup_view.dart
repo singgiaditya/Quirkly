@@ -13,6 +13,13 @@ class SignupView extends StatefulWidget {
 }
 
 class _SigninViewState extends State<SignupView> {
+  final TextEditingController fullNameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController phoneNumberController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -45,6 +52,7 @@ class _SigninViewState extends State<SignupView> {
                     height: 20,
                   ),
                   AuthTextField(
+                    controller: fullNameController,
                     hintText: "Full Name",
                     prefixIcon: Icons.person_outline,
                   ),
@@ -52,6 +60,7 @@ class _SigninViewState extends State<SignupView> {
                     height: 12,
                   ),
                   AuthTextField(
+                    controller: emailController,
                     hintText: "E-mail",
                     prefixIcon: Icons.email_outlined,
                   ),
@@ -59,6 +68,7 @@ class _SigninViewState extends State<SignupView> {
                     height: 12,
                   ),
                   AuthTextField(
+                    controller: phoneNumberController,
                     hintText: "Phone Number",
                     prefixIcon: Icons.phone_outlined,
                   ),
@@ -66,6 +76,7 @@ class _SigninViewState extends State<SignupView> {
                     height: 12,
                   ),
                   AuthTextField(
+                    controller: passwordController,
                     hintText: "Password",
                     prefixIcon: Icons.lock_outline,
                     suffix: Icon(Icons.visibility_off_outlined),
@@ -74,6 +85,7 @@ class _SigninViewState extends State<SignupView> {
                     height: 12,
                   ),
                   AuthTextField(
+                    controller: confirmPasswordController,
                     hintText: "Confirm Password",
                     prefixIcon: Icons.lock_outline,
                     suffix: Icon(Icons.visibility_off_outlined),
