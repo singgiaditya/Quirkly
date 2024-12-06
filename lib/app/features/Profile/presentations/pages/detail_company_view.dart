@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:quirckly/app/core/constant/api.dart';
 import 'package:quirckly/app/core/themes/app_colors.dart';
 import 'package:quirckly/app/core/themes/app_textstyles.dart';
-import 'package:quirckly/app/features/Profile/presentations/widgets/custom_card.dart';
+import 'package:quirckly/app/features/Profile/domain/entities/CompanyEntity.dart';
+import 'package:quirckly/app/features/Profile/presentations/widgets/card_company.dart';
 
 class DetailCompanyView extends StatelessWidget {
-  const DetailCompanyView({super.key});
+  final CompanyEntity company;
+  const DetailCompanyView({super.key, required this.company});
 
   @override
   Widget build(BuildContext context) {
@@ -51,13 +54,14 @@ class DetailCompanyView extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 60,
-                    backgroundImage: NetworkImage("https://picsum.photos/600"),
+                    backgroundImage: NetworkImage(
+                        "${baseUrl}storage/images/${company.image}"),
                   ),
                   SizedBox(
                     height: 20,
                   ),
                   Text(
-                    "Amazon",
+                    "${company.name}",
                     style: titleSTextStyle.copyWith(color: greenColor),
                   ),
                   SizedBox(
@@ -69,7 +73,7 @@ class DetailCompanyView extends StatelessWidget {
                           style: bodyMTextStyle.copyWith(color: Colors.white),
                           children: [
                         TextSpan(
-                            text: "John Cooper",
+                            text: "${company.createdBy!.name}",
                             style: bodyMTextStyle.copyWith(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w600))
@@ -85,8 +89,7 @@ class DetailCompanyView extends StatelessWidget {
                           children: [
                         TextSpan(
                             style: bodyMTextStyle.copyWith(color: Colors.white),
-                            text:
-                                "Lorem ipsum dolor sit amet consectetur. Vestibulum donec odio mollis tellus tempor facilisi. Ante turpis auctor viverra eu mattis tortor. Eleifend posuere amet lorem eu nisl integer at.")
+                            text: "${company.description}")
                       ])),
                   SizedBox(
                     height: 20,
@@ -95,7 +98,7 @@ class DetailCompanyView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Your Company",
+                        "Your Team",
                         style: titleSTextStyle.copyWith(color: yellowColor),
                       ),
                       GestureDetector(
@@ -114,8 +117,12 @@ class DetailCompanyView extends StatelessWidget {
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
                     itemCount: 2,
-                    itemBuilder: (context, index) =>
-                        CustomCard(company: "Amazon"),
+                    itemBuilder: (context, index) => CardCompany(
+                      company: CompanyEntity(
+                        name: "Amazon",
+                        createdAt: DateTime.now(),
+                      ),
+                    ),
                     separatorBuilder: (context, index) => SizedBox(
                       height: 16,
                     ),

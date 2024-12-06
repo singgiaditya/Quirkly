@@ -6,6 +6,8 @@ import 'package:go_router/go_router.dart';
 import 'package:quirckly/app/features/Auth/presentations/pages/signup_view.dart';
 import 'package:quirckly/app/features/Home/presentations/pages/home_view.dart';
 import 'package:quirckly/app/features/NavigationPage/presentations/navigation_page.dart';
+import 'package:quirckly/app/features/Profile/domain/entities/CompanyEntity.dart';
+import 'package:quirckly/app/features/Profile/domain/entities/TeamEntity.dart';
 import 'package:quirckly/app/features/Profile/presentations/pages/detail_company_view.dart';
 import 'package:quirckly/app/features/Profile/presentations/pages/detail_team_view.dart';
 import 'package:quirckly/app/features/Profile/presentations/pages/list_company_view.dart';
@@ -101,12 +103,16 @@ class AppRouter {
                       builder: (context, state) => const ListCompanyView(),
                       routes: [
                         GoRoute(
-                          parentNavigatorKey: _rootNavigatorKey,
-                          path: AppRoutes.detailCompany,
-                          name: AppRoutes.detailCompanyNamed,
-                          builder: (context, state) =>
-                              const DetailCompanyView(),
-                        ),
+                            parentNavigatorKey: _rootNavigatorKey,
+                            path: AppRoutes.detailCompany,
+                            name: AppRoutes.detailCompanyNamed,
+                            builder: (context, state) {
+                              CompanyEntity company =
+                                  state.extra as CompanyEntity;
+                              return DetailCompanyView(
+                                company: company,
+                              );
+                            }),
                       ]),
                   //team
                   GoRoute(
@@ -119,7 +125,12 @@ class AppRouter {
                           parentNavigatorKey: _rootNavigatorKey,
                           path: AppRoutes.detailTeam,
                           name: AppRoutes.detailTeamNamed,
-                          builder: (context, state) => const DetailTeamView(),
+                          builder: (context, state) {
+                            TeamEntity team = state.extra as TeamEntity;
+                            return DetailTeamView(
+                              team: team,
+                            );
+                          },
                         ),
                       ]),
                 ],

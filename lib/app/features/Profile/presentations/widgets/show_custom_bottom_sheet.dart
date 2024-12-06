@@ -4,6 +4,7 @@ import 'package:quirckly/app/core/router/app_routes.dart';
 import 'package:quirckly/app/core/themes/app_colors.dart';
 import 'package:quirckly/app/core/themes/app_textstyles.dart';
 import 'package:quirckly/app/features/Auth/domain/usecase/logout_usecase.dart';
+import 'package:quirckly/app/features/Profile/presentations/widgets/company_create_modal.dart';
 import 'package:quirckly/app/injection_container.dart';
 
 void showCustomBottomSheet(BuildContext context) {
@@ -25,6 +26,13 @@ void showCustomBottomSheet(BuildContext context) {
               height: 24,
             ),
             ListTile(
+              onTap: () {
+                context.pop();
+                showDialog(
+                  context: context,
+                  builder: (context) => CompanyCreateModal(),
+                );
+              },
               leading: Icon(
                 Icons.apartment_outlined,
                 color: Colors.black87,

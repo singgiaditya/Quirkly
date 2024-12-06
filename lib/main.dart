@@ -3,6 +3,9 @@ import 'package:quirckly/app/core/router/app_router.dart';
 import 'package:quirckly/app/core/themes/app_theme.dart';
 import 'package:quirckly/app/features/Auth/presentations/bloc/login_bloc/login_bloc.dart';
 import 'package:quirckly/app/features/Auth/presentations/bloc/register_bloc/register_bloc.dart';
+import 'package:quirckly/app/features/Profile/presentations/bloc/company_bloc/company_bloc.dart';
+import 'package:quirckly/app/features/Profile/presentations/bloc/create_company_bloc/create_company_bloc.dart';
+import 'package:quirckly/app/features/Profile/presentations/bloc/get_all_team_bloc/get_all_team_bloc.dart';
 import 'package:quirckly/app/features/Profile/presentations/bloc/profile_bloc/profile_bloc.dart';
 import 'package:quirckly/app/features/Splash/presentations/bloc/splash_cubit.dart';
 import 'package:quirckly/app/injection_container.dart';
@@ -26,6 +29,11 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<RegisterBloc>(create: (context) => sl()),
         BlocProvider<ProfileBloc>(create: (context) => sl()),
+        BlocProvider<CreateCompanyBloc>(create: (context) => sl()),
+        BlocProvider<GetAllTeamBloc>(
+            create: (context) => sl()..add(GetAllTeamEvent.getAllTeam())),
+        BlocProvider<CompanyBloc>(
+            create: (context) => sl()..add(CompanyEvent.getAllCompany())),
       ],
       child: MaterialApp.router(
         title: "Quirkly",

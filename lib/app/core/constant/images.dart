@@ -3,3 +3,4 @@ const String onBoardingIllustration =
 const String onBoardingBg = "assets/images/onboarding_bg.png";
 
 const String authIllustration = "assets/images/auth_illustration.png";
+const String noImage = "assets/images/no-image.jpg";

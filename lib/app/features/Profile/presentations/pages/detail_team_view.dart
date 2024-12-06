@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quirckly/app/core/themes/app_colors.dart';
 import 'package:quirckly/app/core/themes/app_textstyles.dart';
+import 'package:quirckly/app/features/Profile/domain/entities/TeamEntity.dart';
 
 class DetailTeamView extends StatelessWidget {
-  const DetailTeamView({super.key});
+  final TeamEntity team;
+  const DetailTeamView({super.key, required this.team});
 
   @override
   Widget build(BuildContext context) {
@@ -57,11 +59,11 @@ class DetailTeamView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Team Amazon Server",
+                        "${team.name}",
                         style: bodyBaseTextStyle.copyWith(color: Colors.white),
                       ),
                       Text(
-                        "Company: Amazon",
+                        "Company: ${team.company!.name}",
                         style: regularTextStyle.copyWith(color: Colors.white60),
                       ),
                     ],

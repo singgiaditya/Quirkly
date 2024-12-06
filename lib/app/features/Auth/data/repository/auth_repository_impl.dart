@@ -35,7 +35,7 @@ class AuthRepositoryImpl implements AuthRepository {
         return Left(ServerFailure("Password or Email is Invalid"));
       }
       if (e.toString().contains("Network")) {
-        return Left(NetworkFailure("Please check your internet connection"));
+        return Left(NetworkFailure(e.toString()));
       }
       return Left(UnknownFailure("Unexpected error occurred: $e"));
     }

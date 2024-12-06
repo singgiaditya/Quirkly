@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quirckly/app/core/router/app_routes.dart';
 import 'package:quirckly/app/core/themes/app_colors.dart';
 import 'package:quirckly/app/core/themes/app_textstyles.dart';
-import 'package:quirckly/app/features/Profile/presentations/widgets/custom_card.dart';
+import 'package:quirckly/app/features/Profile/presentations/bloc/get_all_team_bloc/get_all_team_bloc.dart';
+import 'package:quirckly/app/features/Profile/presentations/widgets/card_team.dart';
 
 class ListTeamView extends StatelessWidget {
   const ListTeamView({super.key});
@@ -46,20 +48,36 @@ class ListTeamView extends StatelessWidget {
             SizedBox(
               height: 24,
             ),
-            ListView.separated(
-              shrinkWrap: true,
-              padding: EdgeInsets.symmetric(horizontal: 24),
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: 2,
-              itemBuilder: (context, index) => GestureDetector(
-                  onTap: () => context.pushNamed(AppRoutes.detailTeamNamed),
-                  child: CustomCard(
-                    company: "Amazon",
-                  )),
-              separatorBuilder: (context, index) => SizedBox(
-                height: 20,
-              ),
-            ),
+            BlocBuilder<GetAllTeamBloc, GetAllTeamState>(
+              builder: (context, state) {
+                return state.maybeWhen(
+                  orElse: () => Container(),
+                  loading: () => CircularProgressIndicator(),
+                  error: (failure) => Text(
+                    "${failure.message}",
+                    style: regularTextStyle.copyWith(color: Colors.white),
+                  ),
+                  done: (response) {
+                    return ListView.separated(
+                      padding: EdgeInsets.symmetric(horizontal: 24),
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: response.data!.length,
+                      itemBuilder: (context, index) => GestureDetector(
+                          onTap: () => context.pushNamed(
+                              AppRoutes.detailTeamNamed,
+                              extra: response.data![index].teams),
+                          child: CardTeam(
+                            team: response.data![index].teams!,
+                          )),
+                      separatorBuilder: (context, index) => SizedBox(
+                        height: 14,
+                      ),
+                    );
+                  },
+                );
+              },
+            )
           ],
         )),
       ),

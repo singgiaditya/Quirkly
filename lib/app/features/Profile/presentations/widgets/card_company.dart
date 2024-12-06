@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:quirckly/app/core/constant/api.dart';
+import 'package:quirckly/app/core/constant/images.dart';
 import 'package:quirckly/app/core/themes/app_textstyles.dart';
+import 'package:quirckly/app/features/Profile/domain/entities/CompanyEntity.dart';
 
-class CustomCard extends StatelessWidget {
-  final String? company;
-  const CustomCard({super.key, this.company});
+class CardCompany extends StatelessWidget {
+  final CompanyEntity company;
+  const CardCompany({super.key, required this.company});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +15,9 @@ class CustomCard extends StatelessWidget {
       children: [
         CircleAvatar(
             radius: 24,
-            backgroundImage: NetworkImage("https://picsum.photos/600")),
+            backgroundImage: company.image != null
+                ? NetworkImage("${baseUrl}storage/images/${company.image}")
+                : AssetImage(noImage)),
         SizedBox(
           width: 12,
         ),
@@ -20,17 +25,11 @@ class CustomCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Amazon",
+              "${company.name}",
               style: bodyBaseTextStyle.copyWith(color: Colors.white),
             ),
-            company != null
-                ? Text(
-                    "Company: $company",
-                    style: regularTextStyle.copyWith(color: Colors.white60),
-                  )
-                : SizedBox(),
             Text(
-              "Created at: 14 January 2010",
+              "Created at: ${company.createdAt!.day}-${company.createdAt!.month}-${company.createdAt!.year}",
               style: regularTextStyle.copyWith(color: Colors.white60),
             ),
           ],
